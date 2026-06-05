@@ -4,10 +4,8 @@ import org.testng.annotations.DataProvider;
 
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import utils.DriverFactory;
 import utils.ExcelUtils;
-
-import static utils.DriverFactory.driver;
-
 public class TestDataProvider {
 
     @DataProvider(name="amazonData")
@@ -17,21 +15,5 @@ public class TestDataProvider {
 
         return ExcelUtils.getData();
     }
-    @Test(
-            dataProvider = "amazonData",
-            dataProviderClass =
-                    TestDataProvider.class
-    )
-    public void loginTest(
-            String email,
-            String password,
-            String product) {
 
-        LoginPage loginPage =
-                new LoginPage(driver);
-
-        loginPage.login(
-                email,
-                password);
-    }
 }

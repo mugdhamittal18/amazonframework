@@ -45,6 +45,7 @@ import base.BaseTest;
 import org.testng.annotations.Test;
 import pages.*;
         import utils.ConfigReader;
+import utils.DriverFactory;
 
 public class AmazonOrderTest extends BaseTest {
 
@@ -55,20 +56,20 @@ public class AmazonOrderTest extends BaseTest {
         String password = ConfigReader.getProperty("password");
         String product = ConfigReader.getProperty("product");
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
         loginPage.login(email, password);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(DriverFactory.getDriver());
         homePage.searchProduct(product);
 
-        SearchPage searchPage = new SearchPage(driver);
+        SearchPage searchPage = new SearchPage(DriverFactory.getDriver());
         searchPage.selectProduct();
         searchPage.addToCart();
 
-        CartPage cartPage = new CartPage(driver);
+        CartPage cartPage = new CartPage(DriverFactory.getDriver());
         cartPage.proceedToCheckout();
 
-        CheckoutPage checkoutPage = new CheckoutPage(driver);
+        CheckoutPage checkoutPage = new CheckoutPage(DriverFactory.getDriver());
 
         // checkoutPage.placeOrder();
     }
